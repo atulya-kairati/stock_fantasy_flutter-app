@@ -1,17 +1,20 @@
-
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer' as dev;
 
 import 'package:chart_sparkline/chart_sparkline.dart';
 import "package:flutter/material.dart";
 
-
 class MovingChart extends StatefulWidget {
   const MovingChart({
-    Key? key, required this.height,
+    Key? key,
+    required this.height,
+    this.color,
+    this.bgColor,
   }) : super(key: key);
 
   final double height;
+  final Color? color, bgColor;
 
   @override
   State<MovingChart> createState() => _MovingChartState();
@@ -35,18 +38,15 @@ class _MovingChartState extends State<MovingChart> {
         data = [...data];
       });
     });
-
-    
   }
 
-  mutateData(){
+  mutateData() {
     data.add(Random().nextDouble());
     data.removeAt(0);
   }
 
   @override
   Widget build(BuildContext context) {
-    
     // print(timer);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -69,9 +69,12 @@ class _MovingChartState extends State<MovingChart> {
     );
   }
 
+  
+
   @override
-    void dispose() {
-        super.dispose();
-        timer.cancel();
-    }
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+    dev.log("Chart Destroyrd");
+  }
 }

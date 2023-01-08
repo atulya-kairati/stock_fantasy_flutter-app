@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_fantasy_flutter_app/utils/app_data.dart';
+import 'package:stock_fantasy_flutter_app/widgets/moving_chart.dart';
+import 'package:stock_fantasy_flutter_app/widgets/static_chart.dart';
 
 class StockAmountSelector extends StatefulWidget {
   const StockAmountSelector({
@@ -106,20 +108,7 @@ class _StockAmountSelectorState extends State<StockAmountSelector> {
           ),
 
           Expanded(
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 8),
-              padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-              ),
-              child: Sparkline(
-                data: data,
-                lineWidth: 4,
-                lineColor: Theme.of(context).colorScheme.primary,
-                useCubicSmoothing: true,
-              ),
-            ),
+            child: MovingChart(height: 100),
           ),
 
           const Text("Trend Graph (for demo only)"),
@@ -175,6 +164,8 @@ class _StockAmountSelectorState extends State<StockAmountSelector> {
     leftBudget = (widget.percentage - percentage) * totalBudget / 100;
   }
 }
+
+
 
 class ColoredRoundIconButton extends StatelessWidget {
   const ColoredRoundIconButton(

@@ -16,7 +16,7 @@ class IndividualStatsPage extends StatelessWidget {
     final contestdate = data["playername"]!;
     log(data.toString());
     return Scaffold(
-      appBar: AppBar(title: Text(playername)),
+      appBar: AppBar(title: Text("$playername's Portfolio")),
       body: FutureBuilder(
         future: stock_api.getIndividualStats(playername, contestdate),
         builder: ((context, snapshot) {

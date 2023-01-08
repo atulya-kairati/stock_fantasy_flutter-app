@@ -1,9 +1,11 @@
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:stock_fantasy_flutter_app/utils/dummy_data.dart';
 import 'package:stock_fantasy_flutter_app/utils/app_data.dart';
 import 'package:stock_fantasy_flutter_app/widgets/circular_image_with_border.dart';
+import 'package:stock_fantasy_flutter_app/widgets/static_chart.dart';
 
 class InfluencerDetail extends StatelessWidget {
   const InfluencerDetail({super.key});
@@ -11,7 +13,7 @@ class InfluencerDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final name = ModalRoute.of(context)!.settings.arguments as String;
-    log(name);
+    dev.log(name);
     final color = Theme.of(context).colorScheme.primary;
     final text =
         "$name's picks for ${contestdateObj.day} ${months[contestdateObj.month - 1]}";
@@ -52,7 +54,24 @@ class InfluencerDetail extends StatelessWidget {
                 ],
               ),
             ),
-            ...getStockListItem(name, context),
+            Expanded(
+              child: ListView(
+                children: [
+                  ...getStockListItem(name, context),
+                ],
+              ),
+            ),
+            Center(
+              child: Text(
+                "Past Performance",
+                style: Theme.of(context).textTheme.headline6?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+              ),
+            ),
+            StaticChart(
+              data: [for (var i = 0; i < 20; i++) Random().nextDouble()],
+              color: Colors.green,
+              bgColor: Colors.green[100],
+            )
           ],
         ),
       ),

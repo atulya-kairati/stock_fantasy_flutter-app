@@ -3,7 +3,7 @@ import 'package:stock_fantasy_flutter_app/models/individual_stat.dart';
 const Map<String, List<String>> influencers = {
   "Gems Bong": ["Reliance", "Nifty 50", "M&M"],
   "Hari Putar": ["Reliance", "Nifty 50", "M&M"],
-  "Zhong Xina": ["Reliance", "Nifty 50", "M&M", "Bing Chiling"],
+  "Zhong Xina": ["Reliance", "M&M", "Bing Chiling"],
   "Chacha Chaudhary": ["Reliance", "Nifty 50", "M&M"],
 };
 
